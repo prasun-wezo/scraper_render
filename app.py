@@ -144,7 +144,6 @@ def display_matches(matches):
 
 def start_scraper(url, interval=1):
     options = uc.ChromeOptions()
-    options = uc.ChromeOptions()
     options.add_argument('--headless=new')   # Important! Use 'new' headless mode
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
@@ -152,7 +151,14 @@ def start_scraper(url, interval=1):
     options.add_argument('--window-size=1920,1080')
     options.add_argument('--disable-blink-features=AutomationControlled')
     options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
-    driver = uc.Chrome(options=options, version_main=120)  # make sure to pin a version if necessary
+    
+    
+    options.binary_location = "/usr/bin/chromium"
+
+    driver = uc.Chrome(options=options)
+    
+    
+    # driver = uc.Chrome(options=options, version_main=120)  # make sure to pin a version if necessary
 
     driver.get(url)
 
